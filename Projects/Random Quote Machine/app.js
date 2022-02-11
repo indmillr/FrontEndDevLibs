@@ -61,11 +61,6 @@ const randomBtn = document.querySelector(".random-btn");
 // set starting item
 let currentItem = 0;
 
-// load initial item
-window.addEventListener("DOMContentLoaded", function () {
-  showPerson(currentItem);
-});
-
 // show person based on item
 function showPerson(person) {
   const item = quotes[person];
