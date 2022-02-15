@@ -34,7 +34,7 @@ body {
   font-size: 0.875rem;
 }
 
-h4 {
+h2 {
   letter-spacing: var(--spacing);
   text-transform: capitalize;
   line-height: 1.25;
@@ -43,13 +43,8 @@ h4 {
   font-size: 0.875rem;
 }
 
-p {
-  margin-bottom: 1.25rem;
-  color: var(--clr-dark);
-}
-
 @media screen and (min-width: 800px) {
-  h4 {
+  h2 {
     font-size: 1rem;
     line-height: 1;
   }
@@ -98,15 +93,6 @@ main {
   box-shadow: var(--shadow);
   transition: var(--transition);
   text-align: center;
-}
-
-#author {
-  margin-bottom: 0.75rem;
-}
-
-#text {
-  margin-bottom: 0.75rem;
-  text-align: justify;
 }
 
 .random-btn {
