@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>indmillr: JavaScript Calculator</title>
+    <script
+      src="https://kit.fontawesome.com/6ea0acbb33.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="container">
+        <!-- PROJECT TITLE -->
+        <div class="title">
+          <h2>JavaScript Calculator</h2>
+          <div class="underline"></div>
+        </div>
+        <!-- CALCULATOR -->
+        <div class="calculator" id="calculator">
+          <div class="calculator_display">0</div>
+          <!-- <input type="text" class="calculator_display" value="0" disables /> -->
+          <div class="calculator_keys">
+            <button id="add" class="btn key--operator" data-action="add">
+              +
+            </button>
+            <button
+              id="subtract"
+              class="btn key--operator"
+              data-action="subtract"
+            >
+              -
+            </button>
+            <button
+              id="multiply"
+              class="btn key--operator"
+              data-action="multiply"
+            >
+              &times;
+            </button>
+            <button id="divide" class="btn key--operator" data-action="divide">
+              ÷
+            </button>
+            <button id="seven" class="btn">7</button>
+            <button id="eight" class="btn">8</button>
+            <button id="nine" class="btn">9</button>
+            <button id="four" class="btn">4</button>
+            <button id="five" class="btn">5</button>
+            <button id="six" class="btn">6</button>
+            <button id="one" class="btn">1</button>
+            <button id="two" class="btn">2</button>
+            <button id="three" class="btn">3</button>
+            <button id="zero" class="btn">0</button>
+            <button id="decimal" class="btn" data-action="decimal">.</button>
+            <button id="clear" class="btn" data-action="clear">AC</button>
+            <button id="equals" class="btn key--equal" action="calculate">
+              =
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
