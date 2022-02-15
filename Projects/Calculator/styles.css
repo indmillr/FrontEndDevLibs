@@ -54,7 +54,7 @@ h2 {
   }
 
   body {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -101,22 +101,25 @@ main {
   overflow: hidden;
 }
 
-.calculator_display {
+.calculator-screen {
   background: var(--clr-darker);
   text-align: right;
+  width: 100%;
+  font-size: 1.33rem;
+  font-family: var(--ff-primary);
   padding: 0.25rem 1rem;
   border-radius: var(--radius);
   color: var(--clr-light);
 }
 
-.calculator_keys {
+.calculator-keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 0.25rem;
   grid-column-gap: 0.25rem;
 }
 
-.key--equal {
+.equal-sign {
   grid-row: 2 / 6;
   grid-column: 4 / 5;
 }
@@ -144,10 +147,6 @@ main {
   color: var(--clr-blue);
 }
 
-.key--operator {
-  background-color: var(--clr-yellow);
-}
-
-.key--equal {
+.operator {
   background-color: var(--clr-green);
 }

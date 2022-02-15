@@ -21,42 +21,52 @@
         </div>
         <!-- CALCULATOR -->
         <div class="calculator" id="calculator">
-          <div class="calculator_display">0</div>
-          <!-- <input type="text" class="calculator_display" value="0" disables /> -->
-          <div class="calculator_keys">
-            <button id="add" class="btn key--operator" data-action="add">
+          <input type="text" class="calculator-screen" value="0" disabled />
+          <div class="calculator-keys">
+            <button type="button" class="btn operator" id="add" value="+">
               +
             </button>
-            <button
-              id="subtract"
-              class="btn key--operator"
-              data-action="subtract"
-            >
+            <button type="button" class="btn operator" id="subtract" value="-">
               -
             </button>
-            <button
-              id="multiply"
-              class="btn key--operator"
-              data-action="multiply"
-            >
+            <button type="button" class="btn operator" id="multiply" value="*">
               &times;
             </button>
-            <button id="divide" class="btn key--operator" data-action="divide">
-              ÷
+            <button type="button" class="btn operator" id="divide" value="/">
+              &divide;
             </button>
-            <button id="seven" class="btn">7</button>
-            <button id="eight" class="btn">8</button>
-            <button id="nine" class="btn">9</button>
-            <button id="four" class="btn">4</button>
-            <button id="five" class="btn">5</button>
-            <button id="six" class="btn">6</button>
-            <button id="one" class="btn">1</button>
-            <button id="two" class="btn">2</button>
-            <button id="three" class="btn">3</button>
-            <button id="zero" class="btn">0</button>
-            <button id="decimal" class="btn" data-action="decimal">.</button>
-            <button id="clear" class="btn" data-action="clear">AC</button>
-            <button id="equals" class="btn key--equal" action="calculate">
+            <button type="button" id="seven" class="btn" value="7">7</button>
+            <button type="button" id="eight" class="btn" value="8">8</button>
+            <button type="button" id="nine" class="btn" value="9">9</button>
+            <button type="button" id="four" class="btn" value="4">4</button>
+            <button type="button" id="five" class="btn" value="5">5</button>
+            <button type="button" id="six" class="btn" value="6">6</button>
+            <button type="button" id="one" class="btn" value="1">1</button>
+            <button type="button" id="two" class="btn" value="2">2</button>
+            <button type="button" id="three" class="btn" value="3">3</button>
+            <button type="button" id="zero" class="btn" value="0">0</button>
+            <button
+              type="button"
+              id="decimal"
+              class="btn decimal function"
+              value="."
+            >
+              .
+            </button>
+            <button
+              type="button"
+              id="clear"
+              class="btn all-clear function"
+              value="all-clear"
+            >
+              AC
+            </button>
+            <button
+              type="button"
+              id="equals"
+              class="btn equal-sign operator"
+              value="="
+            >
               =
             </button>
           </div>
