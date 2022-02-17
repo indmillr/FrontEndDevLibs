@@ -1,5 +1,6 @@
 /* ===== FONTS ===== */
 @import url("@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap');");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=Fira+Sans:wght@500&display=swap");
 
 /* ===== VARIABLES ===== */
 :root {
@@ -12,7 +13,8 @@
   --clr-yellow: #e4e9b2;
   --ff-primary: "Fira Sans", sans-serif;
   --ff-secondary: "Open Sans", sans-serif;
-  --transition: all 0.2s linear;
+  --ff-mono: "Fira Mono", monospace;
+  --transition: all 0.1s linear;
   --spacing: 0.1rem;
   --radius: 2.5rem;
   --shadow: 0 20px 15px rgba(80, 81, 70, 0.3);
@@ -88,7 +90,7 @@ main {
   max-width: var(--fixed-width);
 }
 
-.calculator {
+.calc {
   background: var(--clr-light);
   color: var(--clr-dark);
   padding: 1.5rem 2rem;
@@ -97,35 +99,33 @@ main {
   transition: var(--transition);
   text-align: center;
   margin: 0px auto;
-  max-width: 15em;
+  max-width: 20em;
+  min-width: 15em;
   overflow: hidden;
 }
 
-.calculator-screen {
-  background: var(--clr-darker);
+.calcscreen {
+  background: var(--clr-dark);
   text-align: right;
   width: 100%;
   font-size: 1.33rem;
-  font-family: var(--ff-primary);
+  font-family: var(--ff-mono);
+  font-weight: bold;
   padding: 0.25rem 1rem;
   border-radius: var(--radius);
   color: var(--clr-yellow);
 }
 
-.calculator-keys {
+.calckeys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 0.25rem;
   grid-column-gap: 0.25rem;
 }
 
-.equal-sign {
+.equals {
   grid-row: 2 / 6;
   grid-column: 4 / 5;
-}
-
-.calculator_operators {
-  width: 100%;
 }
 
 .btn {
@@ -133,7 +133,7 @@ main {
   background: var(--clr-white);
   color: var(--clr-dark);
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: bolder;
   padding: 0.25rem 0.5rem;
   text-transform: capitalize;
   border-radius: var(--radius);
@@ -148,5 +148,6 @@ main {
 }
 
 .operator {
+  font-size: 1.5rem;
   background-color: var(--clr-green);
 }
