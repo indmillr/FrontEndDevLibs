@@ -1,104 +1,115 @@
 // ========== HOLDER OBJECT ========== //
 
-const calculator = {
-  displayValue: "0",
-  firstOp: null,
-  waitForSecondOp: false,
+const jscalc = {
+  disVal: "0",
+  num1: null,
+  waiting: false,
   operator: null,
+  isNeg: false,
 };
 
 // ========== FUNCTIONS ========== //
 
-function inputDigit(digit) {
-  const { displayValue, waitForSecondOp } = calculator;
+function inputDig(dig) {
+  const { disVal, waiting } = jscalc;
 
-  if (waitForSecondOp === true) {
-    // overwrite displayValue with secondOp
-    calculator.displayValue = digit;
-    // reset waitForSecondOp to false
-    calculator.waitForSecondOp = false;
+  if (waiting === true) {
+    // overwrite 'disVal' with 'num2'
+    jscalc.disVal = dig;
+    // reset 'waiting' to false
+    jscalc.waiting = false;
   } else {
-    // overwrite displayValue if current value is '0'
-    // otherwise append to it
-    calculator.displayValue =
-      displayValue === "0" ? digit : displayValue + digit;
+    // overwrite 'disVal' if current value is '0', otherwise append
+    jscalc.disVal = disVal === "0" ? dig : disVal + dig;
   }
 }
 
-function inputDecimal(dot) {
-  if (calculator.waitForSecondOp === true) {
-    calculator.displayValue = "0.";
-    calculator.waitForSecondOp = false;
+function inputDot(dot) {
+  if (jscalc.waiting === true) {
+    jscalc.disVal = "0.";
+    jscalc.waiting = false;
     return;
   }
-  // if displayValue prop does NOT contain a decimal
-  if (!calculator.displayValue.includes(dot)) {
-    // append the decimal
-    calculator.displayValue += dot;
+  // if 'disVal' prop does NOT contain a decimal, append decimal
+  if (!jscalc.disVal.includes(dot)) {
+    jscalc.disVal += dot;
     return;
   }
 }
 
 function handleOp(nextOp) {
-  // destructure calculator object props
-  const { firstOp, displayValue, operator } = calculator;
-  // convert displayValue to a floating-point number
-  const inputValue = parseFloat(displayValue);
+  // 'jscalc' props destructure
+  const { num1, disVal, operator } = jscalc;
+  // convert 'disVal' to a floating-point number
+  const inputVal = parseFloat(disVal);
 
   // overwrite consecutive operator clicks
-  if (operator && calculator.waitForSecondOp) {
-    calculator.operator = nextOp;
+  /* if most recent operator click is '-' keep the current operator and instead
+  use the '-' operator entry as indicator to convert 'num2' to a negative number
+  by setting 'isNeg' to true */
+  if (operator && jscalc.waiting) {
+    if (operator && nextOp === "-") {
+      jscalc.isNeg = true;
+    } else {
+      jscalc.isNeg = false;
+      jscalc.operator = nextOp;
+    }
     return;
   }
 
-  // is firstOp null? is inputValue !NaN?
-  if (firstOp === null && !isNaN(inputValue)) {
-    // update firstOp
-    calculator.firstOp = inputValue;
+  // is num1 null?
+  // is inputVal !NaN?
+  if (num1 === null && !isNaN(inputVal)) {
+    // update num1
+    jscalc.num1 = inputVal;
   } else if (operator) {
-    const result = calculate(firstOp, inputValue, operator);
+    const result = jscalculate(num1, inputVal, operator);
 
-    calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
-    calculator.firstOp = result;
+    jscalc.disVal = `${parseFloat(result.toFixed(5))}`;
+    jscalc.num1 = result;
   }
 
-  calculator.waitForSecondOp = true;
-  calculator.operator = nextOp;
+  jscalc.waiting = true;
+  jscalc.operator = nextOp;
 }
 
-function calculate(firstOp, secondOp, operator) {
+function jscalculate(num1, num2, operator) {
+  if (jscalc.isNeg === true) {
+    num2 = 0 - num2;
+  }
   if (operator === "+") {
-    return firstOp + secondOp;
+    return num1 + num2;
   } else if (operator === "-") {
-    return firstOp - secondOp;
+    return num1 - num2;
   } else if (operator === "*") {
-    return firstOp * secondOp;
+    return num1 * num2;
   } else if (operator === "/") {
-    return firstOp / secondOp;
+    return num1 / num2;
   }
-  // if secondOp is '=' it will be returned as is
-  return secondOp;
+  // if num2 is '=' just keep it
+  return num2;
 }
 
-function resetCalculator() {
-  calculator.displayValue = "0";
-  calculator.firstOp = null;
-  calculator.waitForSecondOp = false;
-  calculator.operator = null;
+function resetCalc() {
+  jscalc.disVal = "0";
+  jscalc.num1 = null;
+  jscalc.waiting = false;
+  jscalc.operator = null;
+  jscalc.isNeg = false;
 }
 
-function updateDisplay() {
-  // find calculator screen element
-  const display = document.querySelector(".calculator-screen");
-  // update calculator screen with displayValue
-  display.value = calculator.displayValue;
+function updateDis() {
+  // find 'jscalc' screen element
+  const display = document.querySelector(".calcscreen");
+  // update 'jscalc' screen with 'disVal'
+  display.value = jscalc.disVal;
 }
 
-updateDisplay();
+updateDis();
 
 // ========== LOGIC ========== //
 
-const keys = document.querySelector(".calculator-keys");
+const keys = document.querySelector(".calckeys");
 keys.addEventListener("click", (e) => {
   const { target } = e;
   const { value } = target;
@@ -115,15 +126,15 @@ keys.addEventListener("click", (e) => {
       handleOp(value);
       break;
     case ".":
-      inputDecimal(value);
+      inputDot(value);
       break;
-    case "all-clear":
-      resetCalculator();
+    case "reset":
+      resetCalc();
       break;
     default:
       if (Number.isInteger(parseFloat(value))) {
-        inputDigit(value);
+        inputDig(value);
       }
   }
-  updateDisplay();
+  updateDis();
 });
