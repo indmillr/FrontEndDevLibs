@@ -1,86 +1,103 @@
-const keys = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
-const butts = {
-  Q: { d: "Heater-1", u: "Heater-1" },
-  W: { d: "Heater-2", u: "Heater-2" },
-  E: { d: "Heater-3", u: "Heater-3" },
-  A: { d: "Heater-4", u: "Heater-4_1" },
-  S: { d: "Clap", u: "Heater-6" },
-  D: { d: "Open-HH", u: "Dsc_Oh" },
-  Z: { d: "Kick-n'-Hat", u: "Kick_n_Hat" },
-  X: { d: "Kick", u: "RP4_KICK_1" },
-  C: { d: "Closed-HH", u: "Cev_H2" },
-};
+import * as React from "https://cdn.skypack.dev/react@17.0.1";
+import * as ReactDOM from "https://cdn.skypack.dev/react-dom@17.0.1";
 
-const Header = () => (
-  <div className='title'>
-    <h2>Drum Machine</h2>
-    <div className='underline'></div>
+const triggers = [
+  {
+    key: "Q",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
+  },
+  {
+    key: "W",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
+  },
+  {
+    key: "E",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
+  },
+  {
+    key: "A",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
+  },
+  {
+    key: "S",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
+  },
+  {
+    key: "D",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
+  },
+  {
+    key: "Z",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
+  },
+  {
+    key: "X",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
+  },
+  {
+    key: "C",
+    track: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
+  },
+];
+
+const App = () => (
+  <div id='display' className='display'>
+    <h1>phat beat</h1>
+    {triggers.map((beatz, idx) => (
+      <DrumPad text={beatz.key} key={idx} audio={beatz.track} />
+    ))}
   </div>
 );
 
-class DrumMachine extends React.Component {
-  constructor() {
-    super();
-    this.state = { dTxt: "tap!" };
+class DrumPad extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.audio = React.createRef();
   }
-  keyListen({ key, altKey, ctrlKey }) {
-    key = key.toUpperCase();
-    if (!altKey && !ctrlKey && keys.includes(key)) {
-      document.getElementById(`bank${key}`).click();
-    }
-  }
-  padClick = ({ currentTarget: tgt }) => {
-    this.setState({ dTxt: tgt.dataset.txt });
-    tgt.focus();
-    tgt
-      .querySelector("audio")
-      .play()
-      .then(() => {
-        tgt.blur();
-      });
-  };
+
   componentDidMount() {
-    document.addEventListener("keydown", this.keyListen);
+    this.audio.current.addEventListener("ended", (e) => {
+      const parent = e.target.parentNode;
+      parent.classList.remove("active");
+    });
   }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.keyListen);
-  }
+
+  phatBeat = () => {
+    this.audio.current.play();
+
+    const id = this.audio.current.id;
+
+    const parent = this.audio.current.parentNode;
+    parent.classList.add("active");
+
+    const display = parent.parentNode;
+    display.querySelector("h1").innerText = `${id}`;
+  };
+
   render() {
+    const { text, audio } = this.props;
+
     return (
-      <div className='drum-machine' id='drum-machine'>
-        <section id='display' className='display'>
-          {this.state.dTxt}
-        </section>
-        <section className='triggers'>
-          {Object.entries(butts).map(([k, { d, u }], i) => (
-            <button
-              type='button'
-              id={`bank${k}`}
-              className='btn drum-pad'
-              data-txt={d}
-              key={i}
-              onClick={this.padClick}
-            >
-              {k}
-              <audio
-                preload='auto'
-                id={k}
-                className='clip'
-                src={`https://s3.amazonaws.com/freecodecamp/drums/${u}.mp3`}
-              />
-            </button>
-          ))}
-        </section>
+      <div className='drum-pad' onClick={this.phatBeat} id={`drum-${text}`}>
+        {text}
+        <audio ref={this.audio} src={audio} className='clip' id={text} />
       </div>
     );
   }
 }
 
-const App = () => (
-  <section className='container'>
-    <Header />
-    <DrumMachine />
-  </section>
-);
+document.addEventListener("keydown", (e) => {
+  const id = e.key.toUpperCase();
+  const audio = document.getElementById(id);
 
-ReactDOM.render(<App />, document.getElementById("root"));
+  if (audio) {
+    audio.currentTime = 0;
+    const parent = audio.parentNode;
+    const display = parent.parentNode;
+    display.querySelector("h1").innerText = `${id}!`;
+    audio.play();
+  }
+});
+
+ReactDOM.render(<App />, document.getElementById("drum-machine"));
