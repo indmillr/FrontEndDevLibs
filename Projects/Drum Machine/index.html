@@ -1,41 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>indmillr: Drum Machine</title>
-    <script
-      src="https://kit.fontawesome.com/6ea0acbb33.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main>
-      <section class="container">
-        <!-- PROJECT TITLE -->
-        <div class="title">
-          <h2>Drum Machine</h2>
-          <div class="underline"></div>
-        </div>
-        <!-- DRUM MACHINE -->
-        <div class="drum-machine" id="drum-machine">
-          <input type="text" class="display" id="display" value="" disabled />
-          <div class="triggers">
-            <button type="button" id="Q" class="btn drum-pad">Q</button>
-            <button type="button" id="W" class="btn drum-pad">W</button>
-            <button type="button" id="E" class="btn drum-pad">E</button>
-            <button type="button" id="A" class="btn drum-pad">A</button>
-            <button type="button" id="S" class="btn drum-pad">S</button>
-            <button type="button" id="D" class="btn drum-pad">D</button>
-            <button type="button" id="Z" class="btn drum-pad">Z</button>
-            <button type="button" id="X" class="btn drum-pad">X</button>
-            <button type="button" id="C" class="btn drum-pad">C</button>
-          </div>
-        </div>
-      </section>
-    </main>
-  </body>
-  <script src="app.js"></script>
-</html>
+<main class="container">
+  <div class="title">
+    <h2>Drum Machine</h2>
+    <div class="underline"></div>
+  </div>
+  <div id="drum-machine"></div>
+</main>
