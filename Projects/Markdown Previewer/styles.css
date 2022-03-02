@@ -1,0 +1,112 @@
+/* ===== FONTS ===== */
+@import url("@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap');");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=Fira+Sans:wght@500&display=swap");
+
+/* ===== VARIABLES ===== */
+:root {
+  --clr-dark: #505146;
+  --clr-darker: #303024;
+  --clr-blue: #01ffe6;
+  --clr-medium: #c3c1b5;
+  --clr-light: #e5e3d7;
+  --clr-green: #d2e4c4;
+  --clr-yellow: #e4e9b2;
+  --ff-primary: "Fira Sans", sans-serif;
+  --ff-secondary: "Open Sans", sans-serif;
+  --ff-mono: "Fira Mono", monospace;
+  --transition: all 0.1s linear;
+  --spacing: 0.1rem;
+  --radius: 2.5rem;
+  --shadow: 0 20px 15px rgba(80, 81, 70, 0.3);
+  --fixed-width: 620px;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff-secondary);
+  background: var(--clr-medium);
+  color: var(--clr-dark);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  font-family: var(--ff-primary);
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 800px) {
+  h2 {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+}
+
+main {
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+}
+
+.title {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.underline {
+  height: 1px;
+  width: 12rem;
+  background: var(--clr-dark);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#preview {
+  display: block;
+  text-overflow: wrap;
+  min-height: 400px;
+  min-width: 450px;
+  justify-text: left;
+  margin-bottom: 2.5rem;
+}
+
+img {
+  max-width: 450px;
+  height: auto;
+}
+
+#editor {
+  min-height: 400px;
+  min-width: 450px;
+  margin-bottom: 1.5rem;
+  background-color: var(--clr-light);
+}
+
+.content {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto 0px;
+  align-self: center;
+  justify-self: center;
+  background-color: var(--clr-white);
+}
